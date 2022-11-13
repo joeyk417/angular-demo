@@ -2,7 +2,15 @@ import { UserService } from './../../shared/services/user.service';
 import { PostService } from './../../shared/services/post.service';
 import { User } from '../store/user';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { combineLatest, map, Observable, Subscription } from 'rxjs';
+import {
+  combineLatest,
+  forkJoin,
+  map,
+  Observable,
+  Subscription,
+  switchMap,
+  filter,
+} from 'rxjs';
 import { Post } from '../store/posts';
 import { Router } from '@angular/router';
 
@@ -34,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getAllPosts();
   }
 
-  getAllPosts() {
+  public getAllPosts() {
     if (this.userNameEntered) this.userNameEntered = '';
 
     this.subscriptions.push(
@@ -44,33 +52,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPostDetails(id: number) {
+  public getPostDetails(id: number) {
     this.router.navigate(['postdetails', id]);
+  }
+
+  public searchByUsername() {
+    const currentUser$ = this.allUsers$.pipe(
+      map((users) => users.find((u) => u.username === this.userNameEntered))
+    );
+
+    const result$ = combineLatest([currentUser$, this.allPosts$]).pipe(
+      map(([user, posts]) => {
+        return posts.filter((p) => p.userId === user?.id);
+      })
+    );
+
+    this.subscriptions.push(
+      result$.subscribe((posts) => (this.allPosts = posts))
+    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
-
-  searchUser() {
-    this.allPosts = [];
-    const data$ = combineLatest([
-      this.allUsers$.pipe(
-        map((txs) => txs.find((txn) => txn.username === this.userNameEntered))
-      ),
-      this.allPosts$,
-    ]);
-
-    this.subscriptions.push(
-      data$.subscribe(([res1, res2]) => {
-        res2.forEach((element) => {
-          if (element) {
-            if (element.userId === res1?.id) {
-              this.allPosts.push(element);
-            }
-          }
-        });
-      })
-    );
   }
 }
