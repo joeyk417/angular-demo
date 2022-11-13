@@ -1,18 +1,10 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './../../shared/services/user.service';
 import { PostService } from './../../shared/services/post.service';
 import { User } from '../store/user';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  combineLatest,
-  forkJoin,
-  map,
-  Observable,
-  Subscription,
-  switchMap,
-  filter,
-} from 'rxjs';
+import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { Post } from '../store/posts';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',

@@ -1,10 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { UserService } from './../../shared/services/user.service';
 import { PostService } from './../../shared/services/post.service';
 import { Post } from './../store/posts';
 import { Observable, switchMap } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { User } from '../store/user';
 
 @Component({
