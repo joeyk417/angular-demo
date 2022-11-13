@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   userNameEntered: string = '';
   allPosts: Post[] = [];
   userid: number = 0;
+  loading$: Observable<boolean>;
 
   private allPosts$: Observable<Post[]>;
   private allUsers$: Observable<User[]>;
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loading$ = this.postService.loading$;
     this.allPosts$ = this.postService.getAllPosts();
     this.allUsers$ = this.userService.getAllUsers();
 

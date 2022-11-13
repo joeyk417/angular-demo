@@ -1,6 +1,8 @@
 <ng-container>
   <h1 class="navbar-brand">Posts</h1>
 
+  <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+
   <mat-form-field class="mt-4">
     <input matInput placeholder="Username" [(ngModel)]="userNameEntered" />
     <mat-hint>Enter Username to search!</mat-hint>
