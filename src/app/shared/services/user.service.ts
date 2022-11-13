@@ -19,7 +19,7 @@ export class UserService extends EntityCollectionServiceBase<User> {
         if (!loaded) this.getAll();
       }),
       filter((loaded: boolean) => loaded),
-      concatMap(() => this.entities$.pipe())
+      concatMap(() => this.entities$)
     );
   }
 

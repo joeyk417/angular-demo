@@ -20,7 +20,7 @@ export class PostService extends EntityCollectionServiceBase<Post> {
         if (!loaded) this.getAll();
       }),
       filter((loaded: boolean) => loaded),
-      concatMap(() => this.entities$.pipe())
+      concatMap(() => this.entities$)
     );
   }
 
