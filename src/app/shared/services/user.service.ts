@@ -1,10 +1,10 @@
-import { concatMap, filter, Observable, tap, map } from 'rxjs';
-import { User } from './../../pages/store/user';
 import { Injectable } from '@angular/core';
 import {
   EntityCollectionServiceBase,
   EntityCollectionServiceElementsFactory,
 } from '@ngrx/data';
+import { concatMap, filter, Observable, tap, map } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

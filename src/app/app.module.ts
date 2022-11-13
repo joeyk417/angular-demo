@@ -4,8 +4,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule, HttpUrlGenerator } from '@ngrx/data';
-import { entityConfig } from './entity-metadata';
+import {
+  EntityDataModule,
+  EntityDefinitionService,
+  HttpUrlGenerator,
+} from '@ngrx/data';
+import { entityConfig } from './shared/store/entity-metadata';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +21,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { postsEntityMetaData } from './shared/store/post-entity-metadata';
+import { usersEntityMetaData } from './shared/store/user-entity-metadata';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,4 +49,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   providers: [{ provide: HttpUrlGenerator, useClass: CustomurlHttpGenerator }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(entityDefinitionService: EntityDefinitionService) {
+    entityDefinitionService.registerMetadataMap(postsEntityMetaData);
+    entityDefinitionService.registerMetadataMap(usersEntityMetaData);
+  }
+}

@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './../../shared/services/user.service';
 import { PostService } from './../../shared/services/post.service';
-import { User } from '../store/user';
+import { User } from '../../shared/models/user';
 import { combineLatest, map, Observable, Subscription } from 'rxjs';
-import { Post } from '../store/posts';
+import { Post } from '../../shared/models/posts';
 
 @Component({
   selector: 'app-home',

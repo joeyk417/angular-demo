@@ -1,10 +1,9 @@
-import { Post } from './../../pages/store/posts';
-
 import { Injectable } from '@angular/core';
 import {
   EntityCollectionServiceBase,
   EntityCollectionServiceElementsFactory,
 } from '@ngrx/data';
+import { Post } from '../models/posts';
 import { concatMap, filter, map, Observable, tap } from 'rxjs';
 
 @Injectable({

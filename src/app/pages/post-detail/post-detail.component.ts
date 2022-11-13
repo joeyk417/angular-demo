@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UserService } from './../../shared/services/user.service';
 import { PostService } from './../../shared/services/post.service';
-import { Post } from './../store/posts';
+import { Post } from '../../shared/models/posts';
 import { Observable, switchMap } from 'rxjs';
-import { User } from '../store/user';
+import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-post-detail',
