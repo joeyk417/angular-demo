@@ -1,0 +1,38 @@
+<ng-container>
+  <h1 class="navbar-brand">Posts</h1>
+
+  <mat-form-field class="mt-4">
+    <input matInput placeholder="Username" [(ngModel)]="userNameEntered" />
+    <mat-hint>Enter Username to search!</mat-hint>
+  </mat-form-field>
+  <button
+    mat-button
+    class="ms-2 primary-bth-colour"
+    (click)="searchUser()"
+    [disabled]="!userNameEntered"
+  >
+    Search
+  </button>
+  <button mat-button class="ms-2 primary-bth-colour" (click)="getAllPosts()">
+    Reset
+  </button>
+  <div class="container mt-4 mb-12">
+    <div class="d-grid gap-3">
+      <button
+        class="col"
+        *ngFor="
+          let post of allPosts
+            | paginate: { itemsPerPage: 10, currentPage: pages }
+        "
+        (click)="getPostDetails(post.id)"
+        class="p-2 bg-light border"
+      >
+        Title: {{ post.title }}
+      </button>
+    </div>
+  </div>
+</ng-container>
+<pagination-controls
+  class="position-absolute end-position mt-2"
+  (pageChange)="pages = $event"
+></pagination-controls>

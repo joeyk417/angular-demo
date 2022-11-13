@@ -1,0 +1,17 @@
+<mat-card class="card-size" *ngIf="post$ | async as post">
+  <mat-card-title>Post Details</mat-card-title>
+
+  <mat-card-subtitle>Post Id: {{ post.id }}</mat-card-subtitle>
+  <mat-card-subtitle>Title: {{ post.title }}</mat-card-subtitle>
+
+  <mat-card-content>
+    <p>body: {{ post.body }}</p>
+  </mat-card-content>
+  <div *ngIf="user$ | async as user">
+    <p>Username: {{ user.username }}</p>
+    <p>User Full Name: {{ user.name }}</p>
+  </div>
+  <mat-card-actions>
+    <button mat-button (click)="backClicked()">Back</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+$navbar-background: darken(#6495ed, 5%);
+$emphasis-text-color: lighten($navbar-background, 40%);
+
+body {
+}
+.form-check.form-control {
+    padding-left: 1.75rem;
+    height: auto;
+}
+.navbar {
+    border-radius: 0;
+    background: $navbar-background !important;
+}
+a:not(.btn) {
+    color: $emphasis-text-color;
+}
+nav-button-group > div {
+    display: flex;
+    flex-direction: column;
+}
+.btn-block a {
+    display: block;
+}
+.primary-bth-colour {
+  background-color: aliceblue;
+}
+.card-background {
+  background-color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.end-position {
+  right: 10% !important;
+}
